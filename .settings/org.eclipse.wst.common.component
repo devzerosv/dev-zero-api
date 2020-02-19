@@ -2,6 +2,5 @@
     <wb-module deploy-name="dev-zero-api-project">
         <wb-resource deploy-path="/" source-path="/src/main/java"/>
         <wb-resource deploy-path="/" source-path="/target/generated-sources/java"/>
-        <wb-resource deploy-path="/" source-path="/src/test/java"/>
     </wb-module>
 </project-modules>
