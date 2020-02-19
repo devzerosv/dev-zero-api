@@ -3,8 +3,6 @@ package dev.devzero.api.config;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,11 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.jpa.impl.JPAQuery;
-
 import dev.devzero.api.model.Authorities;
-import dev.devzero.api.model.QUserPrincipal;
 import dev.devzero.api.model.UserPrincipal;
 import dev.devzero.api.model.enums.RoleEnum;
 import dev.devzero.api.repository.AuthoritiesRepository;
@@ -43,7 +37,7 @@ public class DevZeroApiApplication extends SpringBootServletInitializer {
 
 	@Bean
 	CommandLineRunner initDatabase(UserPrincipalRepository userRepository,
-			AuthoritiesRepository authoritiesRepository,  EntityManager entityManager) {
+			AuthoritiesRepository authoritiesRepository) {
 
 		List<UserPrincipal> defaultUserList = new ArrayList<>();
 		List<Authorities> defaultAuthoritiesList = new ArrayList<>();
@@ -83,14 +77,6 @@ public class DevZeroApiApplication extends SpringBootServletInitializer {
 		return args -> {
 			userRepository.saveAll(defaultUserList);
 			authoritiesRepository.saveAll(defaultAuthoritiesList);
-			
-			JPAQuery q = new JPAQuery(entityManager);
-			 q.from(QUserPrincipal.userPrincipal).where(QUserPrincipal.userPrincipal.username.eq("msaca"));
-			 UserPrincipal test = (UserPrincipal) q.fetchOne();
-			
-			
-			System.out.println(test.getName());
-			
 		};
 	}
 
