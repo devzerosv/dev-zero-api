@@ -8,6 +8,7 @@ import java.lang.reflect.Type;
 import java.util.logging.Level;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -28,6 +29,7 @@ import lombok.extern.java.Log;
 @Getter
 @Setter
 @Log
+@SuppressWarnings({ "rawtypes", "unchecked" })
 public class BaseCrud<T extends BaseEntity<ID>, ID extends Serializable> {
 
 	public final static String ENTITY_VAR = "entity";
@@ -35,7 +37,7 @@ public class BaseCrud<T extends BaseEntity<ID>, ID extends Serializable> {
 	protected Class clazz;
 	protected Class idclazz;
 
-	// @Inject
+	@PersistenceContext
 	protected EntityManager em;
 
 	protected JPAQuery query;

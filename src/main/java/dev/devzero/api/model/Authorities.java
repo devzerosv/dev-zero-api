@@ -19,7 +19,7 @@ import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 import dev.devzero.api.common.BaseEntity;
-import dev.devzero.api.enums.RoleEnum;
+import dev.devzero.api.model.enums.RoleEnum;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

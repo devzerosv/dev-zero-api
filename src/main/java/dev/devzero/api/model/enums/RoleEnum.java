@@ -3,7 +3,7 @@
  * Author:  Mauricio Saca
  * Purpose: Defines the Class RoleEnum
  ***********************************************************************/
-package dev.devzero.api.enums;
+package dev.devzero.api.model.enums;
 
 public enum RoleEnum {
 	

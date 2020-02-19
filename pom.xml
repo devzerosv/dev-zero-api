@@ -61,21 +61,7 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         
-        <!-- QueryDsl -->
-        
-        <dependency>
-      		<groupId>com.querydsl</groupId>
-      		<artifactId>querydsl-core</artifactId>
-    	</dependency> 
-    	
-    	 <dependency>
-      		<groupId>com.querydsl</groupId>
-      		<artifactId>querydsl-sql</artifactId>
-      		<scope>compile</scope>
-      		<version>${querydsl.version}</version>
-      		<optional>true</optional>
-    	</dependency> 
-        
+        <!-- QueryDsl -->  
         <dependency> 
 		    <groupId>com.querydsl</groupId> 
 		    <artifactId>querydsl-apt</artifactId> 
@@ -145,6 +131,19 @@
 		    <groupId>joda-time</groupId>
 		    <artifactId>joda-time</artifactId>
 		</dependency>
+		
+		 <!-- Commons lang -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        
+         <!-- Mvel -->
+        <dependency>
+            <groupId>org.mvel</groupId>
+            <artifactId>mvel2</artifactId>
+            <version>2.4.4.Final</version>
+        </dependency>
     
     </dependencies>
     
