@@ -3,9 +3,7 @@ package dev.devzero.api.common;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -131,12 +129,6 @@ public abstract class CrudService<T extends BaseEntity<ID>, ID extends Serializa
 		} else {
 			return em.merge(t);
 		}
-	}
-
-	public Map<String, Object> vars() {
-		Map<String, Object> vars = new HashMap<>();
-		vars.put(ENTITY_VAR, getQEntity());
-		return vars;
 	}
 
 	public void beforeDelete(T entity) {

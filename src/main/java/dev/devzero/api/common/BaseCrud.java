@@ -32,7 +32,6 @@ import lombok.extern.java.Log;
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class BaseCrud<T extends BaseEntity<ID>, ID extends Serializable> {
 
-	public final static String ENTITY_VAR = "entity";
 	protected final static int BATCH_SIZE = 100;
 	protected Class clazz;
 	protected Class idclazz;
