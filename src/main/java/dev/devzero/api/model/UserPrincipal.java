@@ -9,24 +9,23 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import dev.devzero.api.common.BaseEntity;
 import lombok.EqualsAndHashCode;
@@ -37,15 +36,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
-@Table(name = "users")
+@MappedSuperclass
 @EqualsAndHashCode(of = { "id" })
 @ToString(of = { "id" })
 @Getter
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class UserPrincipal implements UserDetails, BaseEntity<Long> {
+public abstract class UserPrincipal implements UserDetails, BaseEntity<Long> {
 
 	private static final long serialVersionUID = -5934124525822881508L;
 
@@ -55,28 +53,31 @@ public class UserPrincipal implements UserDetails, BaseEntity<Long> {
 	@Column(nullable = false)
 	private Long id;
 
-	@Column(nullable = false)
-	private String name;
-
-	@Column(nullable = false)
-	private String lastName;
-
-	@JsonIgnore
-	@NotEmpty
-	@Column(nullable = false)
+	@Column(length = 255, nullable = true)
 	private String username;
 
-	@JsonIgnore
-	@NotEmpty
-	@Column(nullable = false)
+	@Column(length = 255, nullable = true)
 	private String password;
 
-	@JsonIgnore
-	@Column(nullable = false)
-	private Boolean enabled;
+	@Column(length = 255, nullable = true)
+	private String email;
 
 	@Column(nullable = true)
-	private String email;
+	@Temporal(TemporalType.DATE)
+	private Date dateJoined;
+
+	@Column(nullable = true)
+	private byte[] picture;
+
+	// @OneToMany
+	// @JoinColumns({ @JoinColumn(name = "USERPRINCIPAL_ID", referencedColumnName =
+	// "ID") })
+	// Set<UserPerfil> perfilByUserPerfilSet;
+
+	// @OneToMany
+	// @JoinColumns({ @JoinColumn(name = "USERPRINCIPAL_ID", referencedColumnName =
+	// "ID") })
+	// Set<ParticipatingMembers> eventsByParticipatingMembersSet;
 
 	@OneToMany(mappedBy = "userPrincipal", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Authorities> roles = new ArrayList<>();
