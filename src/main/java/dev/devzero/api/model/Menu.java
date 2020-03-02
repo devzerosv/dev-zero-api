@@ -32,7 +32,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Menu implements BaseEntity<Long> {
 
-	private static final long serialVersionUID = 38877684837915L;
+	private static final long serialVersionUID = -267864531L;
 
 	@Id
 	@NonNull
@@ -50,13 +50,13 @@ public class Menu implements BaseEntity<Long> {
 	private String viewName;
 
 	@Column(nullable = true)
-	private Integer order;
+	private Integer menuOrder;
 
 	@Column(nullable = true)
 	private byte[] icon;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "MENU_ID", referencedColumnName = "ID") })
+	@JoinColumns({ @JoinColumn(name = "MENU_PARENT", referencedColumnName = "ID") })
 	private Menu menu;
 
 	@OneToMany

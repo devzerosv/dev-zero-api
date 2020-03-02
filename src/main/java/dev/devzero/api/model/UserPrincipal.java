@@ -8,12 +8,15 @@ package dev.devzero.api.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -27,7 +30,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance
+@DiscriminatorColumn(name = "USER_TYPE_PROFILE")
 @EqualsAndHashCode(of = { "id" })
 @ToString(of = { "id" })
 @Getter
@@ -59,6 +63,10 @@ public abstract class UserPrincipal implements BaseEntity<Long> {
 
 	@Column(nullable = true)
 	private byte[] picture;
+
+	@ManyToOne
+	@JoinColumns({ @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID") })
+	private Address address;
 
 	// @OneToMany
 	// @JoinColumns({ @JoinColumn(name = "USERPRINCIPAL_ID", referencedColumnName =

@@ -1,11 +1,8 @@
 package dev.devzero.api.model;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 import dev.devzero.api.common.BaseEntity;
 import lombok.Getter;
@@ -14,7 +11,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table()
+@DiscriminatorValue("C")
 @ToString
 @Getter
 @Setter
@@ -37,8 +34,4 @@ public class Company extends UserPrincipal implements BaseEntity<Long> {
 
 	@Column(length = 255, nullable = true)
 	private String phoneContact;
-
-	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID") })
-	private Address address;
 }

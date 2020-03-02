@@ -32,7 +32,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Perfil implements BaseEntity<Long> {
 
-	private static final long serialVersionUID = 406017193682263L;
+	private static final long serialVersionUID = -223457852545L;
 
 	@Id
 	@NonNull

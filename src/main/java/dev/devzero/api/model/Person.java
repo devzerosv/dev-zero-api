@@ -3,11 +3,8 @@ package dev.devzero.api.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -18,7 +15,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table()
+@DiscriminatorValue("P")
 @ToString
 @Getter
 @Setter
@@ -45,10 +42,6 @@ public class Person extends UserPrincipal implements BaseEntity<Long> {
 	@Column(nullable = true)
 	@Temporal(TemporalType.DATE)
 	private Date birthDate;
-
-	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "ADDRESS_ID", referencedColumnName = "ID") })
-	private Address address;
 
 	/*
 	 * 
