@@ -20,7 +20,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class Person extends UserPrincipal implements BaseEntity<Long> {
+public class Person extends User implements BaseEntity<Long> {
 
 	private static final long serialVersionUID = 222434942787217L;
 

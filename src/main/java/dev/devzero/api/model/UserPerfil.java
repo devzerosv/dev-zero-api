@@ -38,8 +38,8 @@ public class UserPerfil implements BaseEntity<Long> {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "USERPRINCIPAL_ID", referencedColumnName = "ID") })
-	private UserPrincipal userPrincipal;
+	@JoinColumns({ @JoinColumn(name = "USER_ID", referencedColumnName = "ID") })
+	private User user;
 
 	@ManyToOne
 	@JoinColumns({ @JoinColumn(name = "PERFIL_ID", referencedColumnName = "ID") })

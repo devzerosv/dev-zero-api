@@ -59,8 +59,7 @@ public class Menu implements BaseEntity<Long> {
 	@JoinColumns({ @JoinColumn(name = "MENU_PARENT", referencedColumnName = "ID") })
 	private Menu menu;
 
-	@OneToMany
-	@JoinColumns({ @JoinColumn(name = "MENU_ID", referencedColumnName = "ID") })
+	@OneToMany(mappedBy = "menu")
 	private Set<RolMenu> roleByRolMenuSet;
 
 }

@@ -1,7 +1,5 @@
 package dev.devzero.api.model;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import dev.devzero.api.common.BaseEntity;
@@ -40,6 +37,9 @@ public class Perfil implements BaseEntity<Long> {
 	@Column(nullable = false)
 	private Long id;
 
+	@Column(length = 255, nullable = true)
+	private String profileName;
+
 	@Column(nullable = true)
 	private Boolean canAdd;
 
@@ -55,9 +55,5 @@ public class Perfil implements BaseEntity<Long> {
 	@ManyToOne
 	@JoinColumns({ @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID") })
 	private Role role;
-
-	@OneToMany
-	@JoinColumns({ @JoinColumn(name = "PERFIL_ID", referencedColumnName = "ID") })
-	private Set<UserPerfil> userPrincipalByUserPerfilSet;
 
 }

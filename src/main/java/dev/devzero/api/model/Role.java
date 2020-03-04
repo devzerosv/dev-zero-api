@@ -2,8 +2,10 @@ package dev.devzero.api.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,12 +42,11 @@ public class Role implements BaseEntity<Long> {
 	private Long id;
 
 	@Column(length = 255, nullable = true)
-	private String role;
+	private String roleName;
 
 	@Column(length = 255, nullable = true)
 	private String description;
 
-	@OneToMany
-	@JoinColumns({ @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID") })
+	@OneToMany(mappedBy = "role", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<RolMenu> menuByRolMenuSet;
 }

@@ -60,7 +60,7 @@ public class Session implements BaseEntity<Long> {
 	private Boolean sessionActive;
 
 	@ManyToOne
-	@JoinColumns({ @JoinColumn(name = "USERPRINCIPAL_ID", referencedColumnName = "ID") })
-	private UserPrincipal userPrincipal;
+	@JoinColumns({ @JoinColumn(name = "USER_ID", referencedColumnName = "ID") })
+	private User user;
 
 }
